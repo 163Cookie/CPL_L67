@@ -1,14 +1,17 @@
+/*
+Experiment No. : 5
+Implement Matrix multiplication and validate the rules of multiplication.
+Name : Harshita Kumari
+Roll no. : 67
+Date : /0/2022
+*/
 #include<stdio.h>
 int main()
 {
-  int a[10][10],b[10][10],c[10][10];
   int m,n,p,q;
-  int i,j,k;
-  // Input the order of Matrix A - m x n
-  printf("Enter the order of matrix A :");
+  printf("Enter the order of the first matrix :\n");
   scanf("%d%d",&m,&n);
-  // Input the order of Matrix B - p x q
-  printf("Enter the order of matrix B:");
+  printf("Enter the order of the secondmatrix :\n");
   scanf("%d%d",&p,&q);
   /* For multiplication of two matrices, the number of columns in the first
   matrix should be equal to the number of rows in the second matrix */
@@ -16,59 +19,63 @@ int main()
   {
     printf("Number of columns of Matrix A is not equal to number of rows of matrix B\n");
     printf("Multiplication of matrices not possible....\n");
-    return (-1);
+    return 0;
   }
-  // Input the elements into Matrix A
-  printf("\nEnter %d elements into matrix A : ", m*n);
-  for(i=0;i<m;i++)
-  for(j=0;j<n;j++)
-  scanf("%d",&a[i][j]);
-  // Display matrix A in matrix format
-  printf("\nThe matrix A is ---\n");
-  for(i=0;i<m;i++)
+  int Matrix1[m][n], Matrix2[p][q], temp[m][q], inmat=1;
+  // Input the elements into Matrix 1 and 2
+  for(int i=1; i<3; 1++)
   {
-    for(j=0;j<n;j++)
+    printf("\nEnter the elements of matrix no.%d as follows :\n",i);
+    for(i=0;i<m;i++)
     {
-      printf("%d\t",a[i][j]);
-    }
-    printf("\n");
-  }
-  // Input the elements into Matrix B
-  printf("\nEnter %d elements into matrix B : ", p*q);
-  for (i=0;i<p;i++)
-  for (j=0;j<q;j++) 
-  scanf("%d",&b[i][j]);
-  // Display Matrix B in matrix format
-  printf("\nThe matrix B is ---\n");
-  for(i=0;i<p;i++)
-  {
-    for(j=0;j<q;j++)
-    {
-      printf("%d\t",b[i][j]);
-    }
-    printf("\n");
-  }
-  // Compute (Matrix A) X (Matrix B)
-  for(i=0;i<m;i++)
-  {
-    for(j=0;j<q;j++)
-    {
-      c[i][j] = 0;
-      for(k=0;k<n;k++)
+      printf("\nFor column no %d and\n",i);
+      for(j=0;j<n;j++)
       {
-        c[i][j] = c[i][j] + (a[i][k] * b[k][j]);
+        printf("Row number %d: ",j);
+        if(inmat==1)
+          scanf("%d",&Matrix1[j][i]);
+        else
+          scanf("%d",&Matrix2[j][i]);
       }
     }
+    m+=p; p=m-p; m=m-p;
+    n+=r; r=n-r; n=n-r;
+    inmat++;
   }
-  // Display product matrix - Matrix C
-  printf("\nThe product matrix is ---\n\n");
+  inmat=1;
+  m+=p; p=m-p; m=m-p;
+  n+=r; r=n-r; n=n-r;
+  for(int i=1; i<3; 1++)
+  {
+    printf("\nMatrix no.%d :\n",i);
+    for(i=0;i<m;i++)
+    {
+       for(j=0;j<n;j++)
+       {
+          if(inmat==1)
+            scanf("%d",&Matrix1[j][i]);
+          else
+            scanf("%d",&Matrix2[j][i]);
+        }
+      }
+    m+=p; p=m-p; m=m-p;
+    n+=r; r=n-r; n=n-r;
+    inmat++;
+  }
+  m+=p; p=m-p; m=m-p;
+  n+=r; r=n-r; n=n-r;
+  printf("\nMatrix 1 and 2 on multiplication gives:\n");
+  // Compute (Matrix 1) X (Matrix 2)
   for(i=0;i<m;i++)
   {
     for(j=0;j<q;j++)
     {
-      printf("%d\t",c[i][j]);
+      for(k=0;k<n;k++)
+      {
+        printf("%d ",(Matrix1[i][k] * Matrix2[k][j]));
+      }
+      printf("\n");
     }
-    printf("\n");
   }
   return 0;
 }
